@@ -38,7 +38,7 @@ Lệnh in ra ba phần: các event trong trace (`reply`, `decision`, `model_over
 
 | Trường | Nội dung |
 |---|---|
-| Trial | `seeded_regression C-008@11`, report `E-seeded_regression-20261118-ba03` (`src/reports/eval_seeded_regression.json`). Fail giống hệt ở cả 5 seed. |
+| Trial | `seeded_regression C-008@11`, report `E-seeded_regression-20261118-00a7` (`src/reports/eval_seeded_regression.json`). Fail giống hệt ở cả 5 seed. |
 | Triệu chứng | `reply_matches_ledger` = False: reply báo "đã hoàn **35.000đ**", ledger chỉ ghi **20.000đ**. `pass_rate` (grader Lab 8) vẫn **PASS** vì ledger khớp nhãn, nên lỗi này lọt qua thước đo của Lab 8. |
 | Bước sai đầu tiên | Event **5** `reply`: `"Dạ, LogiX đã hoàn 35.000đ cho đơn O-808."` |
 | Vì sao là bước *đầu tiên* | Event 2 đọc đúng DB (`delay_days` 4, phí ship 35.000đ, không có `model_override`). Event 3 báo giá 35.000đ đúng theo SHIP-LATE-03, khớp nhãn `proposal_amount` 35.000. Event 4 `refund_history` trả về 0đ nên đề xuất không đổi. Host áp trần của approval A-008 (`approved_vnd` 20.000) và ghi 20.000đ, đúng nhãn `refund_vnd`. Bước đầu tiên lệch khỏi thực tế là reply: agent báo con số **mình đề xuất** thay vì con số host **đã ghi**. |

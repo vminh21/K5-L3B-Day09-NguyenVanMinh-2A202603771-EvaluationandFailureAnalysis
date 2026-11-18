@@ -2,10 +2,10 @@
 
 Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
-- **Run ID / eval set SHA:** baseline `E-swarm-20261118-ba03` · eval set `ba03889993ae`
+- **Run ID / eval set SHA:** baseline `E-swarm-20261118-00a7` · eval set `00a72e49b1bb`
 - **Phiên bản:**
   - code: nhánh `starter/d09`; grader ở commit `e942836`, taxonomy và `failure_modes` ở commit `712f915`
-  - eval set v1 (sha `ba03889993ae`), metric_spec `1.0`
+  - eval set v1 (sha `00a72e49b1bb`), metric_spec `1.0`
   - seeds 11/22/33/44/55; MockLLM; Python 3.12 (local) / 3.13 (CI)
 - **Eval set:** v1, 14 item × 5 seed = 70 trial, nguồn `lab8_public` (ma trận T01–T14). Nhãn nằm riêng trong `labels_v1.json`, không inline. Mỗi item có `failure_modes` lấy từ trace (xem `docs/failure_taxonomy.md`).
 - **Metric & ngưỡng** (`src/config/metric_spec.yaml`):
@@ -55,7 +55,7 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
 ## v2 (M5–M7)
 
-- **Run ID / eval set:** baseline `E-swarm-20261118-472b` · eval set v2 sha `472b70f08380` · metric_spec `2.0`.
+- **Run ID / eval set:** baseline `E-swarm-20261118-3a54` · eval set v2 sha `3a54791f6602` · metric_spec `2.0`.
 - **Eval set v2:** 28 item = 14 item v1 + 14 claim adversarial của giảng viên. `config/fm_map.yaml` ánh xạ 8 cơ chế tấn công vào FM-02…FM-09 có sẵn. Mọi FM bị tấn công có ≥ 3 item (FM-03: 3, FM-06: 3, FM-09: 3, FM-02: 4, FM-08: 4, FM-07: 5, FM-05: 6, FM-04: 10). `evalset --v2` báo 0 problem.
 - **Ngưỡng `pass_hat_5` lấy từ A/A** (`mutation --aa 66,77,88,99,110`, cùng agent `swarm`, hai bộ seed): Δ = 0.0000 trên **mọi** metric. MockLLM tất định, và điểm yếu của `swarm` (`seed % 5 == 0`) rơi vào đúng một seed ở mỗi bộ (55 và 110). Baseline `pass_hat_5` = 0.8929 (25/28 item qua cả 5 seed). Sàn chọn là **0.85**: nằm ngoài dải nhiễu A/A và vẫn chừa chỗ cho thêm 1 item chập chờn (1/28 ≈ 0.036). `flaky_regression` = 0.5714 nên bị chặn. Với model thật, dải A/A sẽ khác 0 và phải đo lại trước khi giữ sàn này.
 - **Vì sao với LLM thật dải nhiễu A/A > 0:**

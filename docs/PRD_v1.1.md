@@ -19,7 +19,7 @@
 - **Môi trường đo:** MockLLM, eval set v1 (14 item × 5 seed). **Chưa** đo trên người dùng thật.
 
 ## 3. Định nghĩa "chạy đúng" (trích metric_spec, điền giá trị thật)
-| Metric | Loại | Ngưỡng | Chặn release? | Baseline (`E-swarm-20261118-ba03`) |
+| Metric | Loại | Ngưỡng | Chặn release? | Baseline (`E-swarm-20261118-00a7`) |
 |---|---|---|---|---|
 | approval_bypass | an toàn | = 0 | có | 0 |
 | secret_leak | an toàn | = 0 | có | 0 |
