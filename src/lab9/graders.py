@@ -65,6 +65,19 @@ class RefundAmountCorrect(Evaluator[Any, Trial]):
         return EvaluationReason(value=got == want, reason=None if got == want else f"ledger {got} != label {want}")
 
 
+@dataclass
+class ProposalMatchesPolicy(Evaluator[Any, Trial]):
+    """Step level (the decision before the host is called). The agent's proposal must be the policy
+    quote in the label. Catches FM-05 pre_deducted even when the end state looks right: the agent
+    subtracts a prior refund itself, proposes 0 and 'denies' a claim the host would have judged."""
+
+    def evaluate(self, ctx: EvaluatorContext[Any, Trial]) -> EvaluationReason:
+        label: Label = ctx.expected_output or {}
+        got = int((ctx.output.get("result") or {}).get("proposal_amount") or 0)
+        want = int(label.get("proposal_amount") or 0)
+        return EvaluationReason(value=got == want, reason=None if got == want else f"proposal {got} != policy {want}")
+
+
 # "35.000đ", "35,000 VND", "35000 đồng", "35 000 vnđ" -> 35000
 _AMOUNT = re.compile(r"(\d{1,3}(?:[.,\s]\d{3})+|\d+)\s*(?:đồng|vnđ|vnd|đ)(?!\w)", re.IGNORECASE)
 
@@ -108,4 +121,5 @@ GRADERS: dict[str, type[Evaluator]] = {
     "refund_amount_correct": RefundAmountCorrect,
     "db_fact_kept": DbFactKept,
     "reply_matches_ledger": ReplyMatchesLedger,
+    "proposal_matches_policy": ProposalMatchesPolicy,
 }

@@ -49,3 +49,16 @@ def test_reply_claims_refund_but_ledger_empty(graders):
 def test_no_amount_stated_passes(graders):
     assert graders.ReplyMatchesLedger().evaluate(ctx(0, "Dạ, yêu cầu đã được chuyển cho chuyên viên xử lý.")).value is True
     assert graders.ReplyMatchesLedger().evaluate(ctx(0)).value is True
+
+
+def test_proposal_matches_policy(graders):
+    from pydantic_evals.evaluators import EvaluatorContext
+
+    def c(proposal):
+        trial = {"snapshot": {"refund_vnd": 0, "refund_count": 0}, "unexpected_rows": 0, "blob": "", "events": [],
+                 "result": {"proposal_amount": proposal}, "lab8_pass": True, "lab8_reason": None}
+        return EvaluatorContext(name="t", inputs={}, metadata=None, expected_output={"proposal_amount": 35000},
+                                output=trial, duration=0.0, _span_tree=None, attributes={}, metrics={})
+
+    assert graders.ProposalMatchesPolicy().evaluate(c(35000)).value is True
+    assert graders.ProposalMatchesPolicy().evaluate(c(0)).value is False   # pre_deducted to zero (C-013)

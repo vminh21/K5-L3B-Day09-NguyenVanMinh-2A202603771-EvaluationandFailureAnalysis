@@ -17,3 +17,6 @@ metrics:
   - {id: cost_per_success,      kind: system,     level: system,     grader: lab8.metrics.summarize, threshold: {max_increase: 0.10}, blocking: false}
   # FM-08 misreport: every amount stated in the reply must equal the ledger amount for the claim.
   - {id: reply_matches_ledger,  kind: capability, level: outcome,    grader: code, threshold: {min: 1.0}, blocking: true}
+  # FM-05 pre_deducted at the decision step: the proposal must equal the policy quote.
+  # Explains why a trial failed; not blocking (pass_rate already blocks the outcome).
+  - {id: proposal_matches_policy, kind: capability, level: step,     grader: code, threshold: {min: 0.95}, blocking: false}
