@@ -28,6 +28,7 @@
 | db_fact_kept | năng lực (mức bước) | ≥ 0.95 | không (cảnh báo) | 0.9857 |
 | pass_5, cost_per_success | theo dõi | pass_5 ≥ 0.80; cost tăng ≤ 10% | không | 0.9286; 49.567 |
 | reply_matches_ledger (FM-08) | năng lực (outcome) | = 1.0 | có | 1.0 |
+| proposal_matches_policy (FM-05) | năng lực (mức bước) | ≥ 0.95 | không (giải thích lỗi) | 0.9857 |
 
 "Giảm có ý nghĩa" = CI 95% paired bootstrap của Δ (PR − baseline) nằm hoàn toàn dưới 0.
 
@@ -38,7 +39,7 @@
 | FM-02 | Bỏ qua quyết định từ chối của host | `TrialPass` (status) + `ReplyMatchesLedger` | code | So status của kết quả và reply với ledger. Đây là quyết định về tiền nên phải chấm bằng code. |
 | FM-03 | Tin ticket hơn DB | `DbFactKept` (step) + `RefundAmountCorrect` | code | Trace có event `model_override`, đếm được ở mức bước. |
 | FM-04 | Cộng clause / làm tròn sai | `RefundAmountCorrect` | code | So ledger với nhãn. Tiền luôn chấm bằng code. |
-| FM-05 | Trừ tiền hai lần | `RefundAmountCorrect` + `ReplyMatchesLedger` | code | Ledger lệch nhãn và reply lệch ledger. |
+| FM-05 | Trừ tiền hai lần | `ProposalMatchesPolicy` + `RefundAmountCorrect` + `ReplyMatchesLedger` | code | Bắt ngay ở bước đề xuất, kể cả khi kết quả cuối trông đúng (C-013). |
 | FM-06 | Dùng điều khoản cũ | `RefundAmountCorrect` | code | Ledger khác nhãn `denied` 0đ. |
 | FM-07 | Hoàn tiền nhầm sang claim anh em | `ApprovalBypass` (dòng ledger lạ) | code | Đây là sự kiện an toàn: đếm, max 0, không lấy trung bình. |
 | FM-08 | Reply nói số tiền khác ledger | `ReplyMatchesLedger` | code | Grader Lab 8 không bắt được lỗi này. Judge `helpful` cũng bỏ sót (R = 0.30) vì không thấy ledger. |
@@ -61,7 +62,7 @@ Quy tắc: tiền và phê duyệt luôn chấm bằng code. Judge chỉ dùng c
 - [ ] Judge replay trên CSV đã công khai, chưa có tập held-out mới.
 - [ ] Shape `swarm` gốc không ghi event reply, nên metric FM-08 trên baseline chưa phân biệt được gì.
 - [ ] FM-09 chưa có bằng chứng trên v1. C-003, C-004, C-005 và C-009 chỉ kiểm FM-01.
-- [ ] Lỗi chỉ xảy ra ở 1/5 seed (C-002@55 trên `swarm`) không đủ để CI có ý nghĩa.
+- [ ] Lỗi chỉ xảy ra ở 1/5 seed (C-002@55 trên `swarm`) không đủ để CI có ý nghĩa. Trên v2, 4/10 lỗi kiểu `rare` vẫn lọt gate (xem eval card).
 
 ## 7. Khi nào lên v1.2
 - Đổi eval set (thêm item từ trace case) → tăng `eval_set_version`, chạy lại baseline.
