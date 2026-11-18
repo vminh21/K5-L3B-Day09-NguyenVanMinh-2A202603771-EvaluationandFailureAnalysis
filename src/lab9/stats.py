@@ -83,8 +83,8 @@ def paired_bootstrap(a: Sequence[float], b: Sequence[float], *, n_resamples: int
 def _check_k(n: int, c: int, k: int) -> None:
     if k > n:
         raise ValueError(f"k={k} > n={n}")
-    if not (0 <= c <= n) or k < 0:
-        raise ValueError(f"need 0 <= c <= n and k >= 0, got n={n} c={c} k={k}")
+    if not (0 <= c <= n) or k < 1:
+        raise ValueError(f"need 0 <= c <= n and k >= 1, got n={n} c={c} k={k}")
 
 
 def pass_at_k(n: int, c: int, k: int) -> float:
