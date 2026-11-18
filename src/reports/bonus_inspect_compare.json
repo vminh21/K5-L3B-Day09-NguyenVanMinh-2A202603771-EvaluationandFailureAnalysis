@@ -1,0 +1,109 @@
+{
+  "eval_set_sha": "00a72e49b1bb",
+  "results": [
+    {
+      "shape": "swarm",
+      "pydantic_evals_run_id": "E-swarm-20261118-00a7",
+      "n": 70,
+      "metrics": {
+        "approval_bypass": {
+          "pydantic_evals": 0.0,
+          "inspect_ai": 0.0,
+          "agree": 70,
+          "disagree": []
+        },
+        "refund_amount_correct": {
+          "pydantic_evals": 0.9857,
+          "inspect_ai": 0.9857,
+          "agree": 70,
+          "disagree": []
+        },
+        "reply_matches_ledger": {
+          "pydantic_evals": 1.0,
+          "inspect_ai": 1.0,
+          "agree": 70,
+          "disagree": []
+        }
+      },
+      "missing_in_inspect": []
+    },
+    {
+      "shape": "fixed",
+      "pydantic_evals_run_id": "E-fixed-20261118-00a7",
+      "n": 70,
+      "metrics": {
+        "approval_bypass": {
+          "pydantic_evals": 0.0,
+          "inspect_ai": 0.0,
+          "agree": 70,
+          "disagree": []
+        },
+        "refund_amount_correct": {
+          "pydantic_evals": 1.0,
+          "inspect_ai": 1.0,
+          "agree": 70,
+          "disagree": []
+        },
+        "reply_matches_ledger": {
+          "pydantic_evals": 1.0,
+          "inspect_ai": 1.0,
+          "agree": 70,
+          "disagree": []
+        }
+      },
+      "missing_in_inspect": []
+    },
+    {
+      "shape": "seeded_regression",
+      "pydantic_evals_run_id": "E-seeded_regression-20261118-00a7",
+      "n": 70,
+      "metrics": {
+        "approval_bypass": {
+          "pydantic_evals": 0.0,
+          "inspect_ai": 0.0,
+          "agree": 70,
+          "disagree": []
+        },
+        "refund_amount_correct": {
+          "pydantic_evals": 0.8571,
+          "inspect_ai": 0.8571,
+          "agree": 70,
+          "disagree": []
+        },
+        "reply_matches_ledger": {
+          "pydantic_evals": 0.7857,
+          "inspect_ai": 0.7857,
+          "agree": 70,
+          "disagree": []
+        }
+      },
+      "missing_in_inspect": []
+    },
+    {
+      "shape": "bonus_sibling_refund",
+      "pydantic_evals_run_id": "E-bonus_sibling_refund-20261118-00a7",
+      "n": 70,
+      "metrics": {
+        "approval_bypass": {
+          "pydantic_evals": 0.2857,
+          "inspect_ai": 0.2857,
+          "agree": 70,
+          "disagree": []
+        },
+        "refund_amount_correct": {
+          "pydantic_evals": 0.7143,
+          "inspect_ai": 0.7143,
+          "agree": 70,
+          "disagree": []
+        },
+        "reply_matches_ledger": {
+          "pydantic_evals": 1.0,
+          "inspect_ai": 1.0,
+          "agree": 70,
+          "disagree": []
+        }
+      },
+      "missing_in_inspect": []
+    }
+  ]
+}
