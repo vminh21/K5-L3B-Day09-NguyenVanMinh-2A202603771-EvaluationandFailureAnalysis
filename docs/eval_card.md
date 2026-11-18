@@ -53,6 +53,8 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 - **Khi nào tăng eval-set version:** khi thêm item (ví dụ biến trace case thành item có `provenance.from_trace`), sửa nhãn, hoặc đổi `failure_modes`. Mọi thay đổi này đổi SHA của eval set, nên phải chạy lại baseline trên `main` trước. Ngưỡng chỉ được chặt hơn trên cùng một version (ratchet).
 - **Grader bổ sung:** `proposal_matches_policy` (FM-05, mức bước, không chặn; baseline 0.9857, `seeded_regression` 0.7857) giải thích các trial fail mà kết quả cuối trông đúng (C-013). `python -m lab9.mutation --detect`: phát hiện 100% (mục tiêu ≥ 80%), báo nhầm 0% (mục tiêu ≤ 10%). Trước khi có grader này, con số là 75%.
 
+- **Bonus (Inspect AI):** `python -m bonus.inspect_port` viết lại 3 grader thành scorer của Inspect AI (model `mockllm/model`, không gọi API) và so từng trial với report pydantic-evals. Kết quả khớp **840/840** (4 shape × 70 trial × 3 metric), kể cả một shape FM-07 có `approval_bypass` = 0.2857. Chi tiết: `src/bonus/README.md` và `src/reports/bonus_inspect_compare.json`.
+
 ## v2 (M5–M7)
 
 - **Run ID / eval set:** baseline `E-swarm-20261118-3a54` · eval set v2 sha `3a54791f6602` · metric_spec `2.0`.
